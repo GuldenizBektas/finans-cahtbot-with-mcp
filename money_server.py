@@ -3,10 +3,13 @@
 from mcp.server.fastmcp import FastMCP
 import requests
 
-mcp = FastMCP("MoneyAgent")
+mcp = FastMCP("MoneyAgent",
+              instructions="You are answering every question about money.",
+              host="localhost",
+              port="8001")
 
 @mcp.tool()
-def get_balance(user_id: str) -> str:
+async def get_balance(user_id: str) -> str:
     """
     Lokalde çalışan API'den bir kullanıcının bakiye bilgilerini getir.
     """
