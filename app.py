@@ -45,8 +45,7 @@ if "memory" not in st.session_state:
 def setup_agent():
     #llm = ChatOpenAI(model="gpt-4o", temperature=0, api_key="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")
     llm = init_chat_model("gpt-4o", model_provider="openai", 
-                          temperature=0, 
-                          api_key="xxx")
+                          temperature=0)
     client = MultiServerMCPClient(tool_configs)
     tools = asyncio.run(client.get_tools())
     checkpointer = InMemorySaver()
