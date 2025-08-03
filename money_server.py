@@ -1,23 +1,24 @@
 # money_mcp_server.py
-
+import httpx
 from mcp.server.fastmcp import FastMCP
 import requests
 
 mcp = FastMCP("MoneyAgent",
               instructions="You are answering every question about money.",
               host="localhost",
-              port="8001")
+              port=8003)
 
 @mcp.tool()
-async def get_balance(user_id: str) -> str:
+def get_money_info(user_id: str) -> str:
     """
-    Lokalde çalışan API'den bir kullanıcının bakiye bilgilerini getir.
+    If the user asks about account balances, available money, or how much money a user/customer has, always use the `get_money_info` 
+    tool to answer. Never guess or fabricate a balance; always call the tool.
     """
     try:
-        resp = requests.get(f"http://localhost:8000/balance/{user_id}")
+        resp = requests.get(f"http://localhost:8000/balance/1414141")
         resp.raise_for_status()
         data = resp.json()
-        return f"User {user_id} has a balance of {data['balance']} {data['currency']}"
+        return str(data)
     except Exception as e:
         return f"Error getting balance: {e}"
 

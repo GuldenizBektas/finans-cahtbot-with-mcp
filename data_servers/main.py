@@ -967,4 +967,4 @@ def get_user_info(user_id: str):
     return JSONResponse(status_code=404, content={"error": "User not found"})
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8001, reload=True)
+    uvicorn.run("main:app", port=8000, reload=True)
