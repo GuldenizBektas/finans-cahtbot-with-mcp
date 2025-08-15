@@ -9,7 +9,7 @@ Gerekli paketleri yükleyin:
 
 ```bash
 pip install -r requirements.txt
-````
+```
 
 ## Uygulamayı Çalıştırma
 
