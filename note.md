@@ -1,7 +1,7 @@
-Tamam! İşte direkt **README.md** formatına uygun şekilde, başlıklar ve kod bloklarıyla hazırlanmış hâli:
+
 
 ````markdown
-# Finans Chatbot Uygulaması
+Finans Chatbot Uygulaması
 
 ## Kurulum
 
