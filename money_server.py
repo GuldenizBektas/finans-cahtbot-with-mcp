@@ -21,6 +21,29 @@ def get_money_info(user_id: str) -> str:
         return str(data)
     except Exception as e:
         return f"Error getting balance: {e}"
+@mcp.tool()
+def get_transaction_info(user_id: str) -> str:
+    """
+    If the user asks about recent transactions or spending history, always use the `get_transaction_info` tool.
+    """
+    try:
+        resp = requests.get(f"http://localhost:8000/transaction/1414141")
+        resp.raise_for_status()
+        data = resp.json()
+        return str(data)
+    except Exception as e:
+        return f"Error getting transactions: {e}"
+    
+@mcp.tool()
+def get_credit_info(user_id: str) -> str:
+    """Return user credit/loan applications and credit score."""
+    try:
+        resp = requests.get(f"http://localhost:8000/credit/1414141")
+        resp.raise_for_status()
+        data = resp.json()
+        return str(data)
+    except Exception as e:
+        return f"Error getting credit info: {e}"
 
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")

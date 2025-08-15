@@ -2,6 +2,7 @@
 
 from mcp.server.fastmcp import FastMCP
 from openai import OpenAI
+from langchain_openai import ChatOpenAI
 import os
 import asyncio
 from dotenv import load_dotenv
@@ -9,8 +10,7 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 mcp = FastMCP(
     "TranslationAgent",
@@ -18,14 +18,16 @@ mcp = FastMCP(
     host="localhost",
     port=8002
 )
+client = ChatOpenAI(
+    model="gpt-4o-mini",
+    temperature=0,
+    api_key=os.getenv("GITHUB_TOKEN"),
+    base_url="https://models.inference.ai.azure.com"
+)
 
-def gpt_call(messages, model="gpt-4o", temperature=0):
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,
-    )
-    return response.choices[0].message.content.strip()
+def gpt_call(messages, model="gpt-4o-mini", temperature=None):
+    response = client.invoke(messages, model=model, temperature=temperature)
+    return response.content.strip()
 
 @mcp.tool()
 def detect_language(text: str) -> str:
