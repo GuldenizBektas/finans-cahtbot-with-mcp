@@ -1,7 +1,4 @@
-
-
 ````markdown
-Finans Chatbot Uygulaması
 
 ## Kurulum
 
@@ -9,11 +6,11 @@ Gerekli paketleri yükleyin:
 
 ```bash
 pip install -r requirements.txt
-```
+````
 
 ## Uygulamayı Çalıştırma
 
-### Seçenek 1: GitHub API ile 
+### Seçenek 1: GitHub API ile (Varsayılan)
 
 Bu varsayılan ayardır ve GitHub API ile çalışır. Uygulamayı şu şekilde başlatabilirsiniz:
 
@@ -88,6 +85,4 @@ Uygulamayı terminal üzerinden çalıştırmak isterseniz:
 
 ```bash
 python terminal_github.py
-```
-
 ```
